@@ -9,7 +9,7 @@ The rosbags contain unsynchronized LiDAR points and IMU measurements.
 The groundtruth trajectory was estimated ([code](https://github.com/ctu-mrs/mrs_pcl_tools/blob/master/src/executables/EstimateLidarSlamDrift.cpp)) during post-processing: registration of on-board data onto map of the cave (map registred from ~100 overlapping scans from precise Leica BLK360 3D scanner) using ICP set with high-precision parameters.
 
 ## Sensors
-- OS1-16 LiDAR: 16-row point cloud with topics:
+- OS1-16 LiDAR (16 rows, 33.2 deg vFoV) topics:
   - raw points: `/uav63/os1_cloud_node/points`
   - imu: `/uav63/os1_cloud_node/imu`
 
@@ -53,4 +53,4 @@ bull_rock_cave
   - 4x4 transformation matrix
  
 ## References
-[1] Petracek, P.; Kratky, V.; Petrlik, M.; Baca, T.; Kratochvil, R.; Saska, M. *Large-Scale Exploration of Cave Environments by Unmanned Aerial Vehicles.* IEEE Robotics and Automation Letters 2021, 6, 7596–7603.
+[1] Petracek, P.; Kratky, V.; Petrlik, M.; Baca, T.; Kratochvil, R.; Saska, M. *Large-Scale Exploration of Cave Environments by Unmanned Aerial Vehicles,* IEEE Robotics and Automation Letters 2021, 6, 7596–7603.
