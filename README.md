@@ -8,7 +8,7 @@ slam_datasets
 └───B
 └───...
 ```
-- To download all datasets (`A`, `B`, ...), run script `download_all`. Beware, the dataset can be large!
+- To download all datasets (`A`, `B`, ...), run script `download_all.sh`. Beware, the dataset can be large!
 - Run individual `./<DATASET>/download.sh` scripts to download individual datasets.
 
 ## Datasets
