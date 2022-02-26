@@ -10,8 +10,8 @@ The groundtruth trajectory was estimated ([code](https://github.com/ctu-mrs/mrs_
 
 ## Sensors
 - OS1-16 LiDAR (16 rows, 33.2 deg vFoV) topics:
-  - raw points: `/uav63/os1_cloud_node/points`
-  - imu: `/uav63/os1_cloud_node/imu`
+  - raw points: `/uav63/os1_cloud_node/points` of type `sensor_msgs/PointCloud2`
+  - imu: `/uav63/os1_cloud_node/imu` of type `sensor_msgs/Imu`
 
 ## Frames
 - baselink: `uav63/fcu`

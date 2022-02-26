@@ -23,11 +23,15 @@ The groundtruth trajectory was estimated ([code](https://github.com/ctu-mrs/mrs_
 
 ## Sensors
 - OS0-128 LiDAR (128 rows, 90 deg vFoV) topics:
-  - raw points: `/UAV_NAME/os_cloud_nodelet/points`
+  - raw points: `/UAV_NAME/os_cloud_nodelet/points` of type `sensor_msgs/PointCloud2`
     - to filter out the UAV frame, use points with minimal distance of `0.5 m` from the sensor origin
-  - processed points: `/UAV_NAME/os_cloud_nodelet/points_processed`
-  - TODO processed points
-TODO: baslers
+  - processed points: `/UAV_NAME/os_cloud_nodelet/points_processed` of type `sensor_msgs/PointCloud2`
+    - 32 rows (every 4-th row of raw data, evenly spaced), filtered UAV frame, filtered dust
+- Basler:
+  - two cameras [`basler_left`, `basler_right`]
+  - resolution: TODO
+  - camera_info: `/UAV_NAME/basler_X/image_raw/camera_info` of type `sensor_msgs/CameraInfo`
+  - image: `/UAV_NAME/basler_X/image_raw/compressed` of type `sensor_msgs/Image`
 
 ## Frames
 - baselink: `UAV_NAME/fcu`
@@ -38,10 +42,9 @@ TODO: baslers
 ```
 UAV_NAME/fcu
 └───> UAV_NAME/os_sensor
-      └───> UAV_NAME/os_sensor
-            └───> UAV_NAME/os_lidar
-            └───> UAV_NAME/basler_X_optical
-            └───> UAV_NAME/basler_X
+      └───> UAV_NAME/os_lidar
+      └───> UAV_NAME/basler_X_optical
+      └───> UAV_NAME/basler_X
 ```
 
 ## Folder structure
@@ -54,7 +57,6 @@ subt_finals
 │       trajectory_groundtruth.txt
 │       rosbag.bag
 │       fcu_in_map.mat
-│    
 └───...
 ```
 - Script to download large data: `download.sh`
