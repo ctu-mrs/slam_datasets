@@ -69,6 +69,7 @@ do
   fi
 
   echo "Rosbag $((i+1))/$BAGS_LEN: $ROSBAG"
+  echo "UAV name: $UAV_NAME"
 
   # Filter rosbag topics
   if [[ ! -f "$BAG_FILTERED_WO_TFS" && ! -f "$BAG_FILTERED_WITH_TFS" ]]; then
@@ -76,11 +77,17 @@ do
     rosbag filter "${bag}" "${BAG_FILTERED_WITH_TFS}"\
       "topic == '/tf_static' or\
        topic == '/${UAV_NAME}/basler_left/camera_info' or\
+       topic == '/${UAV_NAME}/basler_left/camera_info/throttled' or\
        topic == '/${UAV_NAME}/basler_left/image_raw/compressed' or\
+       topic == '/${UAV_NAME}/basler_left/image_raw/compressed/throttled' or\
        topic == '/${UAV_NAME}/basler_right/camera_info' or\
+       topic == '/${UAV_NAME}/basler_right/camera_info/throttled' or\
        topic == '/${UAV_NAME}/basler_right/image_raw/compressed' or\
+       topic == '/${UAV_NAME}/basler_right/image_raw/compressed/throttled' or\
        topic == '/${UAV_NAME}/os_cloud_nodelet/points' or\
-       topic == '/${UAV_NAME}/os_cloud_nodelet/points_processed'"
+       topic == '/${UAV_NAME}/os_cloud_nodelet/points_processed' or\
+       topic == '/${UAV_NAME}/os_cloud_nodelet/points/throttled' or\
+       topic == '/${UAV_NAME}/os_cloud_nodelet/points_processed/throttled'"
   fi
 
   # Filter rosbag static tfs
@@ -111,7 +118,7 @@ do
 
   if [ ! -f "${STORE_DIR}/rosbag.bag" ]; then
     mv "$BAG_FILTERED_WO_TFS" "${STORE_DIR}/rosbag.bag"
-    ln -s "${STORE_DIR}/rosbag.bag" "$BAG_FILTERED_WO_TFS"
+    # ln -s "${STORE_DIR}/rosbag.bag" "$BAG_FILTERED_WO_TFS"
   fi
 
 done
