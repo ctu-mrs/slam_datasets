@@ -18,11 +18,12 @@ if [ ! -d "$FINALS_PATH" ]; then
   echo -e "Is not directory: ${RED}${FINALS_PATH}${NC}"
   exit -1
 fi
+
 ## #}
 
 ## #{ Paths to input data
 DATASETS=( "uav21_2" "$FINALS_PATH/post_event_testing/day_1/green/7_2021_09_28_12_53_02_metro_flight_15_min/slam_dataset"
-           "uav21_3" "$FINALS_PATH/post_event_testing/day_1/green/3_2021_09_28_11_33_50_urban_localization_dataset/slam_dataset"
+           "uav21_3" "$FINALS_PATH/post_event_testing/day_2/green/3_2021_09_29_14_46_23_cave_crash/slam_dataset"
            "uav21_4" "$FINALS_PATH/post_event_testing/day_1/green/19_2021_09_28_16_10_54_mine_flight_crash_at_the_end/slam_dataset"
            "uav21_5" "$FINALS_PATH/post_event_testing/day_1/green/13_2021_09_28_14_28_35_last_flight_hit_something_lol/slam_dataset"
            "uav21_6" "$FINALS_PATH/post_event_testing/day_2/green/1_2021_09_29_14_06_19_tunnel_to_cave_loop_closure/slam_dataset"
@@ -71,7 +72,7 @@ do
     continue
   fi
 
-  BAG_NAME="${NAME}.bag"
+  BAG_NAME="rosbag.bag"
   if [ -f "${TAR_NAME}" ]; then
     echo -e "File does not exist: ${RED}${DIR_DATASET}/${BAG_NAME}${NC}"
     continue

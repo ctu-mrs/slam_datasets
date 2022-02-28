@@ -16,8 +16,6 @@ else
   TF_LIDAR_IN_FCU="$DATA_PATH/lidar_in_fcu.mat"
 fi
 
-# uav21_3: green_3
-
 ## #{ Parse bag names
 bags_str=$( find $DATA_PATH -name "*.bag" )
 readarray -t BAGS <<< "$bags_str"
@@ -55,18 +53,27 @@ do
   BAG_DIR="$(dirname $ROSBAG)"
   UAV_NAME="${UAV_NAMES[$i]}"
 
+  if [[ "$BAG_DIR" == *slam_dataset ]]; then
+    continue
+  fi
+  
+  STORE_DIR="$BAG_DIR/slam_dataset"
+
   TRAJ_GT="${BAG_DIR}/trajectory_gt.txt"
   TRAJ_LIDAR_IN_MAP="${BAG_DIR}/traj_lidar_in_map.txt"
   TRAJ_FCU_IN_MAP="traj_fcu_in_map.txt"
-  TRAJ_FCU_IN_LOCAL="${BAG_DIR}/traj_fcu_in_local.txt"
-  TF_FCU_IN_MAP="${BAG_DIR}/fcu_in_map.mat"
+  TRAJ_FCU_IN_LOCAL="${STORE_DIR}/trajectory_groundtruth.txt"
+  TF_FCU_IN_MAP="${STORE_DIR}/fcu_in_map.mat"
 
-  BAG_FILTERED_WITH_TFS="${BAG_DIR}/data_filtered_with_tfs.bag"
-  BAG_FILTERED_WO_TFS="${BAG_DIR}/rosbag.bag"
+
+  BAG_FILTERED_WITH_TFS="${STORE_DIR}/data_filtered_with_tfs.bag"
+  BAG_FILTERED_WO_TFS="${STORE_DIR}/rosbag.bag"
 
   if [[ "$ROSBAG" == "$BAG_FILTERED_WO_TFS" || "$ROSBAG" == "$BAG_FILTERED_WITH_TFS" ]]; then
     continue
   fi
+  
+  mkdir -p "$STORE_DIR"
 
   echo "Rosbag $((i+1))/$BAGS_LEN: $ROSBAG"
   echo "UAV name: $UAV_NAME"
@@ -93,7 +100,9 @@ do
   # Filter rosbag static tfs
   if [ ! -f "$BAG_FILTERED_WO_TFS" ]; then
     echo "Filtering static TFs"
+
     python $HOME/git/general_tools/bag_tools/bag_filter_static_tfs.py "${BAG_FILTERED_WITH_TFS}" "${BAG_FILTERED_WO_TFS}" --whitelist "fcu,os_sensor,os_imu,os_lidar,basler_left,basler_right,basler_left_optical,basler_right_optical"
+
     rm "$BAG_FILTERED_WITH_TFS"
   fi
 
@@ -110,16 +119,9 @@ do
   # Transform trajectory to fcu_in_local
   python $HOME/git/general_tools/trajectory_tools/transform_trajectory.py "${TRAJ_FCU_IN_MAP}" "${TF_FCU_IN_MAP}" --invert-transform --output-file "${TRAJ_FCU_IN_LOCAL}"
 
-  # Copy important files
-  STORE_DIR="$BAG_DIR"/slam_dataset
-  mkdir -p "$STORE_DIR"
-  mv "$TF_FCU_IN_MAP" "${STORE_DIR}/fcu_in_map.mat"
-  mv "$TRAJ_FCU_IN_LOCAL" "${STORE_DIR}/trajectory_groundtruth.txt"
-
-  if [ ! -f "${STORE_DIR}/rosbag.bag" ]; then
-    mv "$BAG_FILTERED_WO_TFS" "${STORE_DIR}/rosbag.bag"
-    # ln -s "${STORE_DIR}/rosbag.bag" "$BAG_FILTERED_WO_TFS"
-  fi
+  # Clean
+  rm "$TRAJ_FCU_IN_MAP"
+  rm "$TRAJ_LIDAR_IN_MAP"
 
 done
 
