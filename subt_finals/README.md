@@ -1,6 +1,6 @@
 # DARPA Subterranean Challenge: Finals
 
-Datasets recorded onboard an autonomous UAV system (describe in [1, 2]) deployed within the environment of the DARPA Subterranean Challenge Finals (post-event testing).
+Datasets recorded onboard an autonomous UAV system (described in [1, 2]) deployed within the environment of the DARPA Subterranean Challenge Finals (post-event testing).
 Contains mid-range flights in extremely narrow subterranean environments, with perceptual degradation from whirling dust, no dynamic obstacles, one mine-cave-mine loop, average speed ~0.5 m/s.
 
 ![](.fig/subt_finals.png)
@@ -8,17 +8,17 @@ The rosbags contain unsynchronized LiDAR points and image streams of two cameras
 The groundtruth trajectory was estimated ([code](https://github.com/ctu-mrs/mrs_pcl_tools/blob/master/src/executables/EstimateLidarSlamDrift.cpp)) during post-processing: registration of on-board data onto the map of the environment using ICP set with high-precision parameters.
 
 ## Datasets
-| Dataset        | Length (m, s)    | Environment       | Loop   | Dust noise       | Autonomy                               | GoPro                                  |
-| ---------      | ---------------- | ----------------- | ------ | ---------------- | -------------------------------------- | -------------------------------------- |
-| uav21_2        | 306, 757         | metro             | no     | no               | [link](https://youtu.be/tkGsCteX3Ns)   | N/A                                    |
-| uav21_3        | 23, 58           | cave              | no     | no               | [link](https://youtu.be/OOW50sTCzLY)   | N/A                                    |
-| uav21_4        | 196, 432         | mine              | no     | yes              | [link](https://youtu.be/sCGyxbgCa_E)   | N/A                                    |
-| uav21_5        | 377, 914         | metro             | no     | no               | [link](https://youtu.be/alTvBpJoxpw)   | N/A                                    |
-| uav21_6        | 164, 432         | mine and cave     | yes    | yes              | [link](https://youtu.be/WG3CthG6XuU)   | [link](https://youtu.be/7MFX66mnS50)   |
-| uav22_1        | 131, 332         | mine              | no     | yes              | [link](https://youtu.be/u2O5nsBRvBU)   | N/A                                    |
-| uav22_2        | 347, 347         | mine              | no     | yes              | [link](https://youtu.be/MNnfMZDNs-w)   | [link](https://youtu.be/H9P09uPBGps)   |
-| uav22_3        | 266, 644         | metro             | no     | no               | [link](https://youtu.be/HepOcH5c1Jg)   | N/A                                    |
-| uav24_1        | 162, 475         | urban storeroom   | no     | no               | [link](https://youtu.be/lcehGjB4-HI)   | [link](https://youtu.be/aFqolM6R-4s)   |
+| Dataset   | UAV name | Length (m, s)    | Environment       | Loop   | Dust noise       | Autonomy                               | GoPro                                  |
+| --------- | -------- | ---------------- | ----------------- | ------ | ---------------- | -------------------------------------- | -------------------------------------- |
+| uav21_2   | uav21    | 306, 757         | metro             | no     | no               | [link](https://youtu.be/tkGsCteX3Ns)   | N/A                                    |
+| uav21_3   | uav21    | 23, 58           | cave              | no     | no               | [link](https://youtu.be/OOW50sTCzLY)   | N/A                                    |
+| uav21_4   | uav21    | 196, 432         | mine              | no     | yes              | [link](https://youtu.be/sCGyxbgCa_E)   | N/A                                    |
+| uav21_5   | uav21    | 377, 914         | metro             | no     | no               | [link](https://youtu.be/alTvBpJoxpw)   | N/A                                    |
+| uav21_6   | uav21    | 164, 432         | mine and cave     | yes    | yes              | [link](https://youtu.be/WG3CthG6XuU)   | [link](https://youtu.be/7MFX66mnS50)   |
+| uav22_1   | uav22    | 131, 332         | mine              | no     | yes              | [link](https://youtu.be/u2O5nsBRvBU)   | N/A                                    |
+| uav22_2   | uav22    | 347, 347         | mine              | no     | yes              | [link](https://youtu.be/MNnfMZDNs-w)   | [link](https://youtu.be/H9P09uPBGps)   |
+| uav22_3   | uav22    | 266, 644         | metro             | no     | no               | [link](https://youtu.be/HepOcH5c1Jg)   | N/A                                    |
+| uav24_1   | uav24    | 162, 475         | urban storeroom   | no     | no               | [link](https://youtu.be/lcehGjB4-HI)   | [link](https://youtu.be/aFqolM6R-4s)   |
 
 ## Sensors
 - OS0-128 LiDAR (128 rows, 90 deg vFoV) topics:
