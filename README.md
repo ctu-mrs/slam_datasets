@@ -10,7 +10,8 @@ slam_datasets
 ```
 - To download the datasets, run script `download.sh [datasets]`.
   - **Beware**, the datasets can be large!
-  - Datasets can be downloaded by specifying a comma-separated list of datasets: `./download.sh "bull_rock_cave,subt_finals"`
+  - Datasets can be downloaded by specifying a comma-separated list of datasets:
+    - `./download.sh "bull_rock_cave,subt_finals"`
   - All datasets will be downloaded if no argument is given.
 
 ## Datasets
