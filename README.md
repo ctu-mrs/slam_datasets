@@ -14,7 +14,11 @@ slam_datasets
   - All datasets will be downloaded if no argument is given.
 
 ## Datasets
-- [Bull Rock Cave](./bull_rock_cave/README.md)
-- [DARPA Subterranean Challenge](./descriptions/darpa_subt.md)
+- [Bull Rock Cave](./bull_rock_cave/README.md) [1]
+- [DARPA Subterranean Challenge](./descriptions/darpa_subt.md) [1, 2]
 
+## References
+- [1] Petracek, P.; Kratky, V.; Petrlik, M.; Baca, T.; Kratochvil, R.; Saska, M. *Large-Scale Exploration of Cave Environments by Unmanned Aerial Vehicles,* IEEE Robotics and Automation Letters 2021, 6, 7596–7603.
+- [2] V. Kratky, P. Petracek, T. Baca and M. Saska, *An autonomous unmanned aerial vehicle system for fast exploration of large complex indoor environments,* Journal of field robotics, May 2021.
+ 
 [^1]: Datasets are stored on internal MRS [NAS](https://nasmrs.felk.cvut.cz/index.php/apps/files/?dir=/shared/PERMANENT/slam_datasets&fileid=2620203).
