@@ -4,7 +4,6 @@ Datasets recorded onboard an autonomous UAV system (describe in [1, 2]) deployed
 Contains mid-range flights in extremely narrow subterranean environments, with perceptual degradation from whirling dust, no dynamic obstacles, one mine-cave-mine loop, average speed ~0.5 m/s.
 
 ![](.fig/subt_finals.png)
-
 The rosbags contain unsynchronized LiDAR points and image streams of two cameras.
 The groundtruth trajectory was estimated ([code](https://github.com/ctu-mrs/mrs_pcl_tools/blob/master/src/executables/EstimateLidarSlamDrift.cpp)) during post-processing: registration of on-board data onto the map of the environment using ICP set with high-precision parameters.
 
@@ -27,11 +26,13 @@ The groundtruth trajectory was estimated ([code](https://github.com/ctu-mrs/mrs_
     - to filter out the UAV frame, use points with minimal distance of `0.5 m` from the sensor origin
   - processed points: `/UAV_NAME/os_cloud_nodelet/points_processed` of type `sensor_msgs/PointCloud2`
     - 32 rows (every 4-th row of raw data, evenly spaced), filtered UAV frame, filtered dust
-- Basler:
+- Basler RGB cameras:
+  - resolution: `600 x 800 px`
   - two cameras [`basler_left`, `basler_right`]
-  - resolution: TODO
   - camera_info: `/UAV_NAME/basler_X/image_raw/camera_info` of type `sensor_msgs/CameraInfo`
-  - image: `/UAV_NAME/basler_X/image_raw/compressed` of type `sensor_msgs/Image`
+  - image: `/UAV_NAME/basler_X/image_raw/compressed` of type `sensor_msgs/CompressedImage`
+
+![](.fig/hardware.png)
 
 ## Frames
 - baselink: `UAV_NAME/fcu`

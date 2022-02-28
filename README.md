@@ -3,13 +3,15 @@ Public datasets[^1] for research on laser-based SLAM or localization.
 ## Folder structure
 ```
 slam_datasets
-│   download_all.sh
-└───A
-└───B
+│   download.sh
+└───bull_rock_cave
+└───subt_finals
 └───...
 ```
-- To download all datasets (`A`, `B`, ...), run script `download_all.sh`. Beware, the datasets can be large!
-- Run individual `./<DATASET>/download.sh` scripts to download individual datasets.
+- To download the datasets, run script `download.sh [datasets]`.
+  - **Beware**, the datasets can be large!
+  - Datasets can be downloaded by specifying a comma-separated list of datasets: `./download.sh "bull_rock_cave,subt_finals"`
+  - All datasets will be downloaded if no argument is given.
 
 ## Datasets
 - [Bull Rock Cave](./bull_rock_cave/README.md)
