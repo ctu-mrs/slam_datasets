@@ -82,5 +82,7 @@ do
   echo -e "Running tar on file: ${GREEN}${DIR_DATASET}/${BAG_NAME}${NC}"
   tar -czvf "${TAR_NAME}" -C "${DIR_DATASET}" "${BAG_NAME}"
 
+  rsync -rvp "${TAR_NAME}" datassh@nasmrs:~/shared/PERMANENT/slam_datasets/subt_finals/.
+
 done
 ## #}
