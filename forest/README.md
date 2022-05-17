@@ -51,7 +51,9 @@ uav11/body
 
 ## Multimedia
 
-### Photos of the UAV
+### Photo of the UAV
+
+![](.fig/uav11_1.jpg)
 
 ### Hand-held video of the flight
 
