@@ -11,19 +11,18 @@ download_data() {
     echo " url: $URL"
     echo " destination: $DESTINATION_FOLDER"
   fi
-}g
+}
 ## #}
 
 ######################################################
 # Add datasets here:
 echo Downloading data for dataset: Forest
-URL_BAG=https://nasmrs.felk.cvut.cz/index.php/s/TODO/download
-URL_VIDEO=https://nasmrs.felk.cvut.cz/index.php/s/TODO/download
-URL_PHOTOS=https://nasmrs.felk.cvut.cz/index.php/s/TODO/download
+URL_BAG=https://nasmrs.felk.cvut.cz/index.php/s/Pie7nnpqduvfver/download
+URL_VIDEO=https://nasmrs.felk.cvut.cz/index.php/s/9NQXU39jkkPzkiA/download
 
 # URLs for files and their respective subdirectories
-URL=( "$URL_BAG" "$URL_0_FRONT" "$URL_1_BACK")
-DATA_FOLDERS=( "." "0_front" "1_back" )
+URL=( "$URL_BAG" "$URL_VIDEO" )
+DATA_FOLDERS=( "." "." )
 ######################################################
 
 # Do not change below!
