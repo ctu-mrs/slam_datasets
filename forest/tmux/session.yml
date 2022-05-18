@@ -1,0 +1,25 @@
+name: forest
+root: ./
+startup_window: rosbag_play
+pre_window: export RUN_TYPE=uav; export UAV_NAME=uav11; export ROS_MASTER_URI=http://localhost:11311; export ROS_IP=127.0.0.1
+windows:
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+  - rosbag_play:
+      layout: tiled
+      panes:
+        - waitForRos; rosparam set use_sim_time true; rosbag play ../forest_dataset.bag --clock -r 1.0
+  - tf_body:
+      layout: tiled
+      panes:
+        - waitForRos; rosrun tf2_ros static_transform_publisher 0 0 0 0 0 0 $UAV_NAME/rtk_body $UAV_NAME/body
+  - ouster_to_pc:
+      layout: tiled
+      panes:
+        - waitForRos; rosparam set use_sim_time true; roslaunch ouster_ros uav.launch replay:=true metadata:=`pwd`/10.10.20.90.json
+  - rviz:
+      layout: tiled
+      panes:
+        - waitForRos; rosparam set use_sim_time true; rosrun rviz rviz -d ./rviz.rviz
