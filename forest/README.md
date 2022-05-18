@@ -49,6 +49,12 @@ uav11/body
 └───> uav11/garmin
 ```
 
+If needed, connect the `uav11/body` under, e.g., the `uav11/rtk_origin` frame using the static transform publisher:
+
+```bash
+rosrun tf2_ros static_transform_publisher 0 0 0 0 0 0 $UAV_NAME/rtk_body $UAV_NAME/body
+```
+
 ## Ground truth odometries
 
 GPS Pixhawk odometry:

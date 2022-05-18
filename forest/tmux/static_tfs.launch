@@ -1,0 +1,10 @@
+<launch>
+
+  <arg name="prefix" default="fill_in_prefix" />
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="tf2_static_ouster_$(arg prefix)" args="0 0 0.105 0 0 0 $(arg prefix)/body $(arg prefix)/os_sensor" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="tf2_static_rs_$(arg prefix)" args="0.08 0 -0.04 0 0 0 $(arg prefix)/body $(arg prefix)/rgbd/link" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="tf2_static_rs_optical_$(arg prefix)" args="0.08 0 -0.04 -1.57 0 4.71 $(arg prefix)/body $(arg prefix)/rgbd/color_optical" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="tf2_static_garmin_$(arg prefix)" args="0.08 -0.08 -0.03 0 0 0 $(arg prefix)/body $(arg prefix)/garmin" />
+
+</launch>
