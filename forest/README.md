@@ -49,6 +49,29 @@ uav11/body
 └───> uav11/garmin
 ```
 
+## Ground truth odometries
+
+GPS Pixhawk odometry:
+
+- standard GPS precision, includes covariance
+- topic `/uav11/odometry/odom_gps_pixhawk` of type `nav_msgs/Odometry`
+- topic `/uav11/odometry/marker_gps` of type `visualization_msgs/Marker`
+  - visualization of the path, blue
+
+GPS RTK Emlid Reach:
+
+- intermitent RTK FIX precision, includes covariance
+- topic `/uav11/odometry/odom_rtk_int` of type `nav_msgs/Odometry`
+  - published during the RTK L1_INT Fix (supposingly 2 cm accuracy)
+- topic `/uav11/odometry/odom_rtk_float` of type `nav_msgs/Odometry`
+  - published during the RTK L1_FLOAT (somewhat within 4 m accuracy, but might be better)
+- topic `/uav11/odometry/odom_rtk_single` of type `nav_msgs/Odometry`
+  - not RTK, published during the RTK SINGLE (within 4 m accuracy)
+- topic `/uav11/odometry/odom_rtk_any` of type `nav_msgs/Odometry`
+  - published during all precision modes
+- topic `/uav11/odometry/marker_rtk` of type `visualization_msgs/Marker`
+  - visualization of the path, green = fix, red = other
+
 ## Multimedia
 
 ### Photo of the UAV
@@ -57,4 +80,4 @@ uav11/body
 
 ### Hand-held video of the flight
 
-
+Located in `forest.mp4` after calling `./download.sh`.

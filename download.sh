@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DEFAULT_DATASETS="bull_rock_cave,subt_finals"
-ALLOWED_DATASETS=( "bull_rock_cave" "subt_finals" )
+DEFAULT_DATASETS="bull_rock_cave,subt_finals,forest"
+ALLOWED_DATASETS=( "bull_rock_cave" "subt_finals" "forest")
 
 # Do not change below
 

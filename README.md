@@ -1,12 +1,12 @@
-Public datasets[^1] for research on laser-based SLAM or localization.
+Public datasets[^1] for research on laser-based SLAM, localization and mapping.
 
 ## Folder structure
 ```
 slam_datasets
 │   download.sh
-└───bull_rock_cave
-└───subt_finals
-└───...
+├───bull_rock_cave
+├───subt_finals
+└───forest
 ```
 - To download the datasets, run script `download.sh [datasets]`.
   - **Beware**, the datasets can be large!
