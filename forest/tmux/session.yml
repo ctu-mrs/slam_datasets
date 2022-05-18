@@ -10,7 +10,7 @@ windows:
   - rosbag_play:
       layout: tiled
       panes:
-        - waitForRos; rosparam set use_sim_time true; rosbag play ../forest_dataset.bag --clock -r 1.0
+        - waitForRos; rosparam set use_sim_time true; rosbag play ../forest_dataset.bag --clock -r 1.0 --pause
   - tf_body:
       layout: tiled
       panes:

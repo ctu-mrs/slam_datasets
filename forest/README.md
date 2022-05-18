@@ -1,10 +1,10 @@
 # Forest dataset
 
-This dataset contains approx 1.25 km-long flight throught a sparse forest.
+This dataset contains approx 1.25 km-long 19-minutes flight throught a sparse forest.
 It was created for develoment and testing of large-scale localization and mapping techniques, that often struggle with other then the small, clean and feature-full laboratory environments.
 This dataset containes intermited recording of RTG GPS with Integer FIX solution.
 
-![](.fig/forest_dataset.png)
+![](.fig/forest_map.jpg)
 
 The rosbags contain unsynchronized LiDAR points, IMU measurements and RGBD data.
 Ground thruth is provided via onboard GPS (Pixhaw) and RTK GPS (Emlid Reach) with intermitend INT FIX.
