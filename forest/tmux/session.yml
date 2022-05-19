@@ -11,14 +11,22 @@ windows:
       layout: tiled
       panes:
         - waitForRos; rosparam set use_sim_time true; rosbag play ../forest_dataset.bag --clock -r 1.0 --pause
-  - tf_rtk_body:
+  - tf_connector:
       layout: tiled
       panes:
-        - waitForRos; rosrun tf2_ros static_transform_publisher 0 0 0 0 0 0 $UAV_NAME/rtk_body $UAV_NAME/body
+        - waitForRos; roslaunch mrs_uav_odometry tf_connector.launch
   - ouster_to_pc:
       layout: tiled
       panes:
         - waitForRos; rosparam set use_sim_time true; roslaunch ouster_ros uav.launch replay:=true metadata:=`pwd`/10.10.20.90.json
+  - pcl_filter:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch mrs_pcl_tools pcl_filter.launch
+  - aloam:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch aloam_slam aloam.launch fcu_frame:=$UAV_NAME/body
   - static_tfs:
       layout: tiled
       panes:
