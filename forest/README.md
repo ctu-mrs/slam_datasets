@@ -1,13 +1,17 @@
 # Forest dataset
 
-This dataset contains approx 1.25 km-long 19-minutes flight throught a sparse forest.
-It was created for develoment and testing of large-scale localization and mapping techniques, that often struggle with other then the small, clean and feature-full laboratory environments.
-This dataset containes intermited recording of RTG GPS with Integer FIX solution.
+This dataset contains approx 1.25 km-long 19-minutes flight through a sparse forest.
+It was created to develop and test large-scale localization and mapping techniques that often struggle with other than the small, clean, and feature-full laboratory environments.
+This dataset contains an intermitted recording of RTK GPS with an Integer FIX solution.
 
 ![](.fig/forest_map.jpg)
 
-The rosbags contain unsynchronized LiDAR points, IMU measurements and RGBD data.
-Ground thruth is provided via onboard GPS (Pixhaw) and RTK GPS (Emlid Reach) with intermitend INT FIX.
+The rosbags contain unsynchronized LiDAR points, IMU measurements, and RGBD data.
+Ground truth is provided via onboard GPS (Pixhaw) and RTK GPS (Emlid Reach) with intermittent INT FIX.
+
+## Requirements
+
+The [ouster_ros](https://github.com/ctu-mrs/ouster/) for interpreting ther OS-128's data.
 
 ## Sensors
 
@@ -55,7 +59,7 @@ If needed, connect the `uav11/body` under, e.g., the `uav11/rtk_origin` frame us
 rosrun tf2_ros static_transform_publisher 0 0 0 0 0 0 $UAV_NAME/rtk_body $UAV_NAME/body
 ```
 
-## Ground truth odometries
+## Ground truth odometry
 
 GPS Pixhawk odometry:
 
@@ -78,12 +82,29 @@ GPS RTK Emlid Reach:
 - topic `/uav11/odometry/marker_rtk` of type `visualization_msgs/Marker`
   - visualization of the path, green = fix, red = other
 
+## Example tmuxinator session
+
+`./tmux` contains an example tmuxinator session that shows the recorded data in rviz.
+
+## Static transformations
+
+If you need to republish the transformations for the sensors under a different body frame, use the provided [launch file](./tmux/static_tfs.launch).
+
+## Known issues
+
+Although the RTK ground truth is supposed to have approx. 2 cm accuracy during the L1_INT FIX mode, we observed a discrepancy between the takeoff and landing position.
+We took off while having L1_INT FIX and landed on the same spot, again while having L1_INT FIX, but the positions differ by approx. 1 m laterally and 3 m vertically.
+Although our experience with the Emlid Reach suggests that it is very accurate, this was a new experience for us.
+So take the ground truth with a grain of salt.
+Nevertheless, this dataset is more about **"whether a localization and mapping system can make it through the whole flight"** rather than **"how it is precise"**.
+For this reason, even this RTK Ground truth should suffice.
+
 ## Multimedia
 
 ### Photo of the UAV
 
 ![](.fig/uav11_1.jpg)
 
-### Hand-held video of the flight
+### Handheld video of the flight
 
-Located in `forest.mp4` after calling `./download.sh`.
+The video will be located in `./forest.mp4` after calling `./download.sh`.
