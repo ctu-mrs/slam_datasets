@@ -19,6 +19,11 @@ windows:
       layout: tiled
       panes:
         - waitForRos; rosparam set use_sim_time true; roslaunch ouster_ros uav.launch replay:=true metadata:=`pwd`/10.10.20.90.json
+  - image_republish:
+      layout: tiled
+      panes:
+        - waitForRos; rosparam set use_sim_time true; rosrun image_transport republish compressed in:=/$UAV_NAME/rgbd/color/image_raw raw out:=/$UAV_NAME/rgbd/color/image_raw
+        - waitForRos; rosparam set use_sim_time true; rosrun image_transport republish compressedDepth in:=/$UAV_NAME/rgbd/aligned_depth_to_color/image_raw raw out:=/$UAV_NAME/rgbd/aligned_depth_to_color/image_raw
   - static_tfs:
       layout: tiled
       panes:
