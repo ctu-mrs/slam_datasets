@@ -7,29 +7,38 @@ windows:
       layout: tiled
       panes:
         - roscore
+        - ./waitForRos.sh; rosparam set use_sim_time true
   - rosbag_play:
       layout: tiled
       panes:
-        - waitForRos; rosparam set use_sim_time true; rosbag play ../forest_dataset.bag --clock -r 1.0
-        - waitForRos; rosparam set use_sim_time true; rosbag play ../forest_dataset.bag -u 1 -l --topics /tf_static
+        # play the whole bag
+        - ./waitForRos.sh; rosbag play ../forest_dataset.bag --clock -r 1.0
+        # play just the 1st second in loop and publish the /tf_static topic
+        - ./waitForRos.sh; rosbag play ../forest_dataset.bag -u 1 -l --topics /tf_static
   - tf_rtk_body:
       layout: tiled
       panes:
-        - waitForRos; rosrun tf2_ros static_transform_publisher 0 0 0 0 0 0 $UAV_NAME/rtk_body $UAV_NAME/body
+        # connect the uav11/body frame to the uav11/rtk_frame
+        - ./waitForRos.sh; rosrun tf2_ros static_transform_publisher 0 0 0 0 0 0 $UAV_NAME/rtk_body $UAV_NAME/body
   - ouster_to_pc:
       layout: tiled
       panes:
-        - waitForRos; rosparam set use_sim_time true; roslaunch ouster_ros uav.launch replay:=true metadata:=`pwd`/10.10.20.90.json
+        # convert the ouster LiDAR packets into PointClouds 
+        - ./waitForRos.sh; roslaunch ouster_ros uav.launch replay:=true metadata:=`pwd`/10.10.20.90.json
   - image_republish:
       layout: tiled
       panes:
-        - waitForRos; rosparam set use_sim_time true; rosrun image_transport republish compressed in:=/$UAV_NAME/rgbd/color/image_raw raw out:=/$UAV_NAME/rgbd/color/image_raw
-        - waitForRos; rosparam set use_sim_time true; rosrun image_transport republish compressedDepth in:=/$UAV_NAME/rgbd/aligned_depth_to_color/image_raw raw out:=/$UAV_NAME/rgbd/aligned_depth_to_color/image_raw
+        # republish Realsense compressed RGB images as raw
+        - ./waitForRos.sh; rosrun image_transport republish compressed in:=/$UAV_NAME/rgbd/color/image_raw raw out:=/$UAV_NAME/rgbd/color/image_raw
+        # republish Realsense compressed depth images as raw
+        - ./waitForRos.sh; rosrun image_transport republish compressedDepth in:=/$UAV_NAME/rgbd/aligned_depth_to_color/image_raw raw out:=/$UAV_NAME/rgbd/aligned_depth_to_color/image_raw
   - static_tfs:
       layout: tiled
       panes:
-        - waitForRos; rosparam set use_sim_time true; roslaunch ./static_tfs.launch prefix:=slam
+        # as an example, publish a new instance of the sensor TFs subtree
+        - ./waitForRos.sh; roslaunch ./static_tfs.launch prefix:=slam
   - rviz:
       layout: tiled
       panes:
-        - waitForRos; rosparam set use_sim_time true; rosrun rviz rviz -d ./rviz.rviz
+        # run rviz
+        - ./waitForRos.sh; rosrun rviz rviz -d ./rviz.rviz
