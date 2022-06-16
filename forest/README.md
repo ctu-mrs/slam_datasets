@@ -84,7 +84,7 @@ GPS RTK Emlid Reach:
 
 ## Example tmuxinator session
 
-`./tmux` contains an example tmuxinator session that shows the recorded data in rviz.
+The `./tmux` folder contains an example _tmuxinator_ session that shows the recorded data in rviz.
 
 ## Static transformations
 
