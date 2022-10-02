@@ -17,6 +17,7 @@ slam_datasets
 ## Datasets
 - [Bull Rock Cave](./bull_rock_cave/README.md) [1]
 - [DARPA Subterranean Challenge](./subt_finals/README.md) [1, 2]
+- [Forest](./forest/README.md)
 
 ## References
 - [1] Petracek, P.; Kratky, V.; Petrlik, M.; Baca, T.; Kratochvil, R.; Saska, M. *Large-Scale Exploration of Cave Environments by Unmanned Aerial Vehicles,* IEEE Robotics and Automation Letters 2021, 6, 7596–7603.
