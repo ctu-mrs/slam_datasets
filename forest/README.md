@@ -6,6 +6,8 @@ This dataset contains an intermitted recording of RTK GPS with an Integer FIX so
 
 ![](.fig/forest_map.jpg)
 
+![](.fig/uav_forest.jpg)
+
 The rosbags contain unsynchronized LiDAR points, IMU measurements, and RGBD data.
 Ground truth is provided via onboard GPS (Pixhaw) and RTK GPS (Emlid Reach) with intermittent INT FIX.
 
