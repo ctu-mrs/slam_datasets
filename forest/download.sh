@@ -5,9 +5,9 @@ download_data() {
   URL=$1
   DESTINATION_FOLDER=$2
   if wget --no-check-certificate --content-disposition "${URL}" -c -P "${DESTINATION_FOLDER}"; then
-    echo "wget of data was successfull"
+    echo "wget of data was successful"
   else
-    echo "wget of data was unsuccessfull"
+    echo "wget of data was unsuccessful"
     echo " url: $URL"
     echo " destination: $DESTINATION_FOLDER"
   fi
@@ -17,8 +17,8 @@ download_data() {
 ######################################################
 # Add datasets here:
 echo Downloading data for dataset: Forest
-URL_BAG=https://nasmrs.felk.cvut.cz/index.php/s/Pie7nnpqduvfver/download
-URL_VIDEO=https://nasmrs.felk.cvut.cz/index.php/s/9NQXU39jkkPzkiA/download
+URL_BAG=https://nasmrs.fel.cvut.cz/index.php/s/Pie7nnpqduvfver/download
+URL_VIDEO=https://nasmrs.fel.cvut.cz/index.php/s/9NQXU39jkkPzkiA/download
 
 # URLs for files and their respective subdirectories
 URL=( "$URL_BAG" "$URL_VIDEO" )
